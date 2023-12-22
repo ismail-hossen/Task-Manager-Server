@@ -44,6 +44,12 @@ async function run() {
       });
       res.send(result);
     });
+
+    app.delete("/delete-task/:id", async (req, res) => {
+      const id = { _id: new ObjectId(req.params.id) };
+      const result = await tasksCollection.deleteOne(id);
+      res.send(result);
+    });
   } finally {
     // await client.close();
   }
